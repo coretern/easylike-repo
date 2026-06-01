@@ -1,0 +1,150 @@
+{% include 'header.twig' %}
+
+<div class="wrapper-content">
+    <div class="wrapper-content__header">
+          </div>
+
+    <div class="wrapper-content__body">
+      <!-- Main variables *content* -->
+      <div id="block_94">
+    <div class="add-funds__form">
+        <div class="bg"></div>
+        <div class="divider-top"></div>
+        <div class="divider-bottom"></div>
+        <div class="container">
+            {% if contentText %}
+<div class="card mt-2 mb-2">
+{{ contentText }}
+</div>
+{% endif %}
+            <div class="row add-funds__form-alignment">
+                <div class="col-lg-6 ">
+                    <div class="component_card">
+                        <div class="card mt-2">
+
+{% if error %}
+      <div class="alert alert-dismissible alert-danger">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ errorText }}
+      </div>
+    {% endif %}  
+
+    {% if data["childpanel"]["success"] == 1 %}
+      <div class="alert alert-dismissible alert-success">
+          <strong> Order Id: </strong> {{ data['childpanel']['id'] }} <br>
+          <strong> Service: </strong> {{ data['childpanel']['service'] }} <br>
+          <strong> Domain: </strong> {{ data['childpanel']['link'] }} <br>
+          <strong> Quantity: </strong> {{ data['childpanel']['quantity'] }} <br>
+          <strong> Charge: </strong> {{ data['childpanel']['price'] }} <br>
+      </div>
+    {% endif %}
+        
+    {% if data["childpanel"]["success"] == 2 %}
+      <div class="alert alert-dismissible alert-success">
+          <strong> Order Id: </strong> {{ data['childpanel']['id'] }} <br>
+          <strong> Child Panel Renewed Successfully</strong>
+      </div>
+    {% endif %}
+    </br>
+    <form action="/child-panels" method="post">
+    <div class="form-group">
+    <label class="Domain" for="currency">Domain</label>
+    <input type="text" class="form-control" name="domain" placeholder="YourDomain.com" required>
+    </div>
+		
+		<div class="ChildPanelNote">
+<span class="help-block" >Before buying a Child Panel, point your domain to our nameservers :</span>
+<p><b>ns1.ownwebhost.in</b> <span class="copy" onclick="copyToClipboard('ns1.ownwebhost.in');"><i class="fas fa-copy"></i></span></p>
+<p><b>ns2.ownwebhost.in</b> <span class="copy" onclick="copyToClipboard('ns2.ownwebhost.in');"><i class="fas fa-copy"></i></span></p>
+</span></div>
+		
+    
+		
+		<div class="form-group">
+        
+<label class="Domain" for="currency">Currency</label>
+			
+		<select class="form-control" name="currency" required>
+<option value="USD">United States Dollars (USD)</option>
+<option value="INR">Indian Rupee (INR)</option>
+</select>
+    </div>
+	
+ <div class="form-group">
+    <label for="exampleInputEmail1">Username</label>
+    <input type="text" class="form-control" name="username" placeholder="Username" required>
+    </div>
+		
+		  <div class="form-group">
+        
+<label class="control-label" for="orderpanelform-password">Password</label><input id="childpanel_admin_password" type="password" class="form-control" name="password" placeholder="Password" required>
+    </div>
+    		  <div class="form-group">
+        
+<label class="control-label" for="orderpanelform-password">Confirm Password</label><input type="password" class="form-control" name="password_confirm" placeholder="Password" required>
+    </div>
+		
+		
+		
+
+    <div class="form-group">
+              <label for="charge" class="control-label">{{ lang["neworder.charge"] }}</label>
+              <input type="text" class="form-control" value="{{site_base_currency_symbol}}{{" "}}{{site["childpanel_price"]}}" readonly>
+            </div>
+    <button type="submit" class="btn btn-block btn-big-primary" name="submit" value="Submit" id="submit_form">Submit Order</button>
+   
+    </form>
+</div></div></div>
+
+<div class="col" style="margin-top:-10px">
+
+<div class="orders-history__margin-table">
+<div class="table-bg component_table ">
+<br>
+<div class="table-wr table-responsive custom-table">
+
+            <table class="table ">
+              <thead>
+            <tr>
+              <th>#</th>
+              <th>Domain</th>
+              <th>Renewal Date</th>
+              <th class="nowrap">Status</th>
+   
+            </tr>
+          </thead>
+          <tbody>
+
+{% for logs in chilpanel_logs %}
+<tr>
+<td>{{ logs['id'] }}</td>
+                <td>{{ logs['domain'] }}</td>
+                
+                <td>{{logs["renewal_date"] }}</td>
+
+<td class="nowrap">
+                {% if logs['status'] == "terminated" %}<form action="/child-panels" method="post"><input name="renew_id" type="hidden" value="{{ logs['id'] }}"/><input type="submit" name="renew" class="btn btn-primary" value="Renew"></form>
+                {% elseif logs['status'] == "active" %}<button class="btn btn-primary">Active</button>
+                {% else %}<button class="btn btn-secondary">Disabled</button>
+                {% endif %}</td>
+
+</tr>
+{% endfor %}
+</tbody>
+</table>
+      </div>
+  </div></div></div>
+
+   </div></div></div></div>
+</div>
+ <div class="divider-top"></div>
+        <div class="divider-bottom"></div>
+        <div class="container ludd">
+		{% if contentText2 %}
+<div class="card mb-4">
+{{ contentText2 }}
+</div>
+{% endif %}
+</div>
+<script>function copyToClipboard(text) {const textarea = document.createElement('textarea');textarea.value = text;document.body.appendChild(textarea);textarea.select();document.execCommand('copy');document.body.removeChild(textarea);}document.addEventListener("DOMContentLoaded", function() {const randomizeButton = document.getElementById("randomize_password");const passwordInput = document.getElementById("childpanel_admin_password");const confirmInput = document.getElementById("childpanel_admin_confirm_password");randomizeButton.addEventListener("click", function() {const randomPassword = Math.random().toString(36).slice(-8);passwordInput.value = randomPassword;confirmInput.value = randomPassword;});});</script>
+{% include 'footer.twig' %}

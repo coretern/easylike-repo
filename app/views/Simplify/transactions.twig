@@ -1,0 +1,124 @@
+{% include 'header.twig' %}
+
+ <div class="wrapper-content__body">
+      <!-- Main variables *content* -->
+      <div id="block_api" class="pt-5">
+  <div class="block-api">
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="cardff">
+               <div class="col-md-12g">
+      <div class="well "></br></br>
+        <div class="dashboard-content">
+<div class="head clearfix">
+    <h5>Transactions</h5>
+    <span><strong> <img width="30" height="30" src="https://i.imgur.com/lvwNVuM.png" ></img> </strong></span>
+  </div>
+  <div class="content">
+    
+    
+    
+                        <div class="table-bg component_table ">
+                            <div class="table-wr table-responsive">
+        <table class="table ">
+          <thead>
+            <tr>
+              <th>Amount</th>
+              <th class="width-40">Method</th>
+              <th class="nowrap">Transaction ID</th>
+              <th>Date</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+
+            {% for transaction in transactions %}
+              <tr>
+               
+                <td>{{ transaction['payment_amount'] }}</td>
+                <td class="width-40">{{ transaction['method_name'] }}</td>
+                <td class="nowrap">{{ transaction['payment_extra'] }}</td>
+                <td>{{ transaction['payment_create_date'] }}</td>
+               
+              </tr>
+            {% endfor %}
+
+          </tbody>
+        </table>
+      </div>
+
+      {% if pagination["count"] > 1 %}
+        <ul class="pagination">
+
+          {% if pagination["current"] != 1 %}
+            <li>
+              <a href="orders/{{ status }}/{{ pagination["previous"] }}{% if search %}?search={{ search }}{% endif %}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+          {% endif %}
+
+          {% set r, l = 3, 3 %}
+
+          {% if pagination['current'] == 1 %}
+            {% set r = 7 %}
+          {% endif %}
+
+          {% if pagination['current'] == 2 %}
+            {% set r = 5 %}
+          {% endif %}
+
+          {% if pagination['current'] >= pagination['count'] %}
+            {% set l = 5 %}
+          {% endif %}
+
+          {% for page in 1..pagination["count"] %}
+            {% if page >= (pagination['current']-l) and page <= (pagination['current']+r) %}
+              <li{% if page == pagination['current'] %} class="active" {%endif%}><a href="orders/{{ status }}/{{ page }}{% if search %}?search={{ search }}{% endif %}">{{ page }}</a></li>
+            {%endif%}
+          {% endfor %}
+
+          {% if pagination['current'] < pagination['count'] %}
+            <li>
+              <a href="orders/{{ status }}/{{ pagination['next'] }}{% if search %}?search={{ search }}{% endif %}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          {% endif %}
+
+        </ul>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </div>
+</div>
+      </div>
+    </div>
+  </div>  </div>
+ </div> </div>
+</div> </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+{% include 'footer.twig' %}

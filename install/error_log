@@ -1,0 +1,2 @@
+[12-Jul-2024 08:49:36 UTC] PHP Strict Standards:  mysqli::next_result(): There is no next result set. Please, call mysqli_more_results()/mysqli::more_results() to check whether to call this function/method in /home/socialbazar/public_html/install/index.php on line 31
+[12-Jul-2024 08:51:15 UTC] PHP Strict Standards:  mysqli::next_result(): There is no next result set. Please, call mysqli_more_results()/mysqli::more_results() to check whether to call this function/method in /home/socialbazar/public_html/install/index.php on line 31

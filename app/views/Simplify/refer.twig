@@ -1,0 +1,222 @@
+{% include 'header.twig' %}
+
+<!---Copun Code---->
+<div class="wrapper-content__body">
+  <!-- Main variables *content* -->
+  <div id="block_api" class="pt-5">
+  <div class="block-api">
+  <div class="container-fluid">
+  <div class="row justify-content-center">
+  <div class="col-lg-10">
+         
+  <div class="col-md-12g">
+  <div class="well "></br></br>
+  <div class="dashboard-content">
+  <div class="head clearfix">
+  <h5>Refer and Earn!</h5><span>
+       
+    <strong><img width="30" height="30" src="https://i.imgur.com/2nTIIQj.png" ></img> </strong>
+    </span> 
+    
+  </div>
+  <div class="content">
+  
+  
+              <div class="">
+               <div class="">
+                  <div class="">
+                     <section class="">
+                        <div class="">
+                           <div class="">
+                              <div class="d-card dc-dblue">
+                                 <div class="d-card-body" id="dc-body">
+                                    <div class="ref-items ri-sm">
+                                       <div class="ref-item">
+                                          <div class="row">
+                                             <div class="col-md-4 col-12 the-title align-self-center"><b>LINK : </b>
+                                             </div>
+                                             <div class="col-md-8 col-12 the-text align-self-center"><span id="link-1" class="mr-1">{{ site["url"] }}/affiliates?ref={{ user['ref_code'] }}</span>  <a>
+                                            <span
+                                                data-clip="true"
+                                                title="Link copied"
+                                                data-clipboard-action="copy"
+                                                data-clipboard-target="#link-1"
+                                                class="fas fa-clone"></span>
+                                        </a>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       
+                                       <!-- item end -->
+                                       <div class="ref-item">
+                                          <div class="row">
+                                             <div class="col-md-4 col-12 the-title align-self-center"><b>BONUS :</b>
+                                             </div>
+                                             <div class="col-md-8 col-12 the-text align-self-center">{{settings["referral_commision"]}}%
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <!-- item end -->
+                                        
+                                       <div class="ref-item">
+                                          <div class="row">
+                                             <div class="col-md-4 col-12 the-title align-self-center"><b>MIN PAYOUT :</b>
+                                             </div>
+                                             <div class="col-md-8 col-12 the-text align-self-center">
+                                                {{ currency['symbol']}} {{ (settings["referral_payout"]*currency["value"]) }}
+                                             </div>
+                                          </div>
+                                       </div>
+                                        
+                                       <div class="ref-item">
+                                          <div class="row">
+                                             <div class="col-auto align-self-center">
+                                                <i class="fas fa-info-circle fa-2x text-danger"></i>
+                                             </div>
+                                             <div class="col align-self-center text-style-2">
+                                               Remember, you will only earn bonuses from memberships that register through the link defined in your account.
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <!-- item end -->					  
+                                    </div>
+                                 </div>	{% for ref in ref_content %}
+                                 <div class="d-card-body mt-3" id="dc-body">
+                                    <div class="ref-items ri-sm">
+                                       <div class="ref-item d-blue mb-2">
+                                          <div class="row">
+                                             <div class="col-md-1 col-1 align-self-center icon">
+                                                <i class="fas fa-mouse-pointer"></i>
+                                             </div>
+                                             <div class="col-md-9 col-8 the-title align-self-center">Total Visits
+                                             </div>
+                                             <div class="col-md-2 col-2 the-text align-self-center text-right">{{ ref['referral_clicks'] }}
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <!-- item end -->
+                                       <div class="ref-item d-blue mb-2">
+                                          <div class="row">
+                                             <div class="col-md-1 col-1 align-self-center icon">
+                                                 <i class="fas fa-mouse-pointer"></i>
+                                             </div>
+                                             <div class="col-md-9 col-8 the-title align-self-center">Successful Referrals
+                                             </div>
+                                             <div class="col-md-2 col-2 the-text align-self-center text-right">{{ ref['referral_sign_up'] }}
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <!-- item end -->
+                                       <div class="ref-item d-blue mb-2">
+                                          <div class="row">
+                                             <div class="col-md-1 col-1 align-self-center icon">
+                                                <i class="fas fa-street-view"></i>
+                                             </div>
+                                             <div class="col-md-9 col-8 the-title align-self-center">Conversion Rate
+                                             </div>
+                                             <div class="col-md-2 col-2 the-text align-self-center text-right">{{ ( ref['referral_sign_up'] / ref['referral_clicks']) * 100 }}%
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <!-- item end -->
+                                       <div class="ref-item d-blue mb-2">
+                                          <div class="row">
+                                             <div class="col-md-1 col-1 align-self-center icon">
+                                                <i class="fas fa-smile"></i>
+                                             </div>
+                                             <div class="col-md-9 col-8 the-title align-self-center">Total Earnings
+                                             </div>
+                                             <div class="col-md-2 col-2 the-text align-self-center text-right">{{ currency['symbol'] }}{{ ref['referral_total_commision']*currency["value"] }}
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <!-- item end -->
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="ref-item d-blue mb-2">
+                                          <div class="row">
+                                             <div class="col-md-1 col-1 align-self-center icon">
+                                                <i class="fas fa-usd-circle"></i>
+                                             </div>
+                                             <div class="col-md-9 col-8 the-title align-self-center">Available Earnings
+                                             </div>
+                                             <div class="col-md-2 col-2 the-text align-self-center text-right">{{ currency['symbol'] }}{{ (ref['referral_total_commision'] - (ref['referral_earned_commision']  +  ref['referral_requested_commision'] +  ref['referral_rejected_commision'])) *currency["value"] }}
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <!-- item end -->
+                                       <div class="ref-item d-blue mb-2">
+                                          <div class="row">
+                                             <div class="col-md-1 col-1 align-self-center icon">
+                                                <i class="fas fa-usd-circle"></i>
+                                             </div>
+                                             <div class="col-md-9 col-8 the-title align-self-center">Rejected Earnings
+                                             </div>
+                                             <div class="col-md-2 col-2 the-text align-self-center text-right">{{ currency['symbol'] }}{{ ref['referral_rejected_commision']*currency["value"] }}
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="ref-item d-blue mb-2">
+                                          <div class="row">
+                                             <div class="col-md-1 col-1 align-self-center icon">
+                                                <i class="fas fa-usd-circle"></i>
+                                             </div>
+                                             <div class="col-md-9 col-8 the-title align-self-center">PayOut
+                                             </div>
+                                             <div class="col-md-2 col-2 the-text align-self-center text-right"><form method="post" action="">
+
+																				<input type="hidden" name="ref_code" value="{{ user['ref_code'] }}">
+																				<input type="hidden" name="ref_amt" value="{{ ref['referral_total_commision'] - (ref['referral_earned_commision'] + ref['referral_requested_commision'] ) }}">
+																				<a href="javascript:void(0)">
+																				{% if (ref['referral_total_commision'] - (ref['referral_earned_commision'] + ref['referral_requested_commision'] + ref['referral_rejected_commision'] )) >= settings["referral_payout"] %} <button type="submit" style="margin-left:2px;" class="btn btn-actions">Request</button>
+															 {% endif %} 						</a>
+
+																			</form>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       
+                                       <!-- item end -->
+   {% endfor %}
+   </br> <div class="table-bg affiliate-block__table-payments component_table ">
+                        <div class="table-wr table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Payout date</th>
+                                    <th>Payout amount</th>
+<th>Last Updated</th>
+                                    <th>Payout status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+	{% for ref_payout in ref_payouts %}
+														<tr>
+<td>{{ ref_payout['r_p_requested_at'] }}</td>
+<td>{{ currency['symbol'] }}{{ ref_payout['r_p_amount_requested']*currency["value"] }}</td>
+<td>{{ ref_payout['r_p_updated_at'] }}</td>
+<td>
+																{% if (ref_payout['r_p_status'] == 0)  %}
+																	{{ "Pending" }}
+																{% elseif (ref_payout['r_p_status'] == 1)  %}
+																	{{ "Disapproved" }}
+																{% elseif (ref_payout['r_p_status'] == 2)  %}
+																	{{ "Approved" }}
+																{% elseif (ref_payout['r_p_status'] == 3)  %}
+																	{{ "Rejected" }}
+																{% endif %}
+															</td>
+
+														</tr>
+													{% endfor %}
+												</tbody>
+                            </table>
+                        </div>
+                    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div> 
+{% include 'footer.twig' %}
