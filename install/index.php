@@ -57,12 +57,9 @@ return [
 
         if (file_put_contents('../app/config.php', $config_content) !== false) {
             // Send installation details to admin email
-            if (sendInstallationEmail($domain)) {
-                header('Location: success.php');
-                exit;
-            } else {
-                die('Failed to send installation details to admin.');
-            }
+            @sendInstallationEmail($domain);
+            header('Location: success.php');
+            exit;
         } else {
             die('Error writing configuration file.');
         }
